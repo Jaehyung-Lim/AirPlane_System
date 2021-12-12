@@ -1,0 +1,74 @@
+ <form method="post">
+    <button 
+        style="margin-left: 10px;" 
+        name='change_to_delete' 
+        type="submit" 
+        value="delete page"                              
+        formaction="/insert"> <!--어느 .js 파일로 보낼 것인지-->
+        delete page로 이동
+    </button>
+    <button 
+        style="margin-left: 10px;" 
+        name='change_to_update' 
+        type="submit" 
+        value="update page"                              
+        formaction="/insert"> <!--어느 .js 파일로 보낼 것인지-->
+        update page로 이동
+    </button>
+</form>
+
+<h1>Airport 데이터 삽입</h1>   <!--타이틀을 설정 한 것-->
+
+<form name="Airport" method="post" action='/insert'>     <!--폼의 이름과 method, action(home으로 넘겨줌)을 설정 -->
+    <td>                                           <!--action은 데이터를 어떤 페이지에 넘겨 줄 것인지를 설정 -->
+        <input id="Airport_code" name="Airport_code" type="text" required placeholder="Airport_code">
+    </td>                                          <!--required는 꼭 입력되어야 하는 값 입니다.-->
+    <td>                                           <!--placeholder는 해당 자리에 어떤 값이 들어가는지 미리보기로 알려주는 것입니다.-->
+        <input id="Name" name="Name" type="text"  placeholder="Name">
+    </td>
+    <td>                                           <!--placeholder는 해당 자리에 어떤 값이 들어가는지 미리보기로 알려주는 것입니다.-->
+        <input id="City" name="City" type="text"  placeholder="City">
+    </td>
+    <td>                                           <!--placeholder는 해당 자리에 어떤 값이 들어가는지 미리보기로 알려주는 것입니다.-->
+        <input id="State" name="State" type="text"  placeholder="State">
+    </td>
+    <td>
+        <input type="submit" value="삽입">      <!--삽입 텍스트를 갖고 있는 submit 버튼을 생성합니다.-->
+    </td>
+</form>
+<br></br>
+<!--############################################################3-->
+<h1>Flight 데이터 삽입</h1>   <!--타이틀을 설정 한 것-->
+
+<form name="flight" method="post" action='/insert'>     <!--폼의 이름과 method, action(home으로 넘겨줌)을 설정 -->
+    <td>                                           <!--action은 데이터를 어떤 페이지에 넘겨 줄 것인지를 설정 -->
+        <input id="Flight_number" name="Flight_number" type="text" required placeholder="Flight_number">
+    </td>                                          <!--required는 꼭 입력되어야 하는 값 입니다.-->
+    <td>                                           <!--placeholder는 해당 자리에 어떤 값이 들어가는지 미리보기로 알려주는 것입니다.-->
+        <input id="Airline" name="Airline" type="text"  placeholder="Airline">
+    </td>
+    <td>                                           <!--placeholder는 해당 자리에 어떤 값이 들어가는지 미리보기로 알려주는 것입니다.-->
+        <input id="Weekdays" name="Weekdays" type="text"  placeholder="Weekdays">
+    </td>
+    <td>
+        <input type="submit" value="삽입">      <!--삽입 텍스트를 갖고 있는 submit 버튼을 생성합니다.-->
+    </td>
+</form>
+
+<!--############################################################3-->
+<h1>Airplane 데이터 삽입</h1>   <!--타이틀을 설정 한 것-->
+
+<form name="airplane" method="post" action='/insert'>     <!--폼의 이름과 method, action(home으로 넘겨줌)을 설정 -->
+    <td>                                           <!--action은 데이터를 어떤 페이지에 넘겨 줄 것인지를 설정 -->
+        <input id="Airplane_id" name="Airplane_id" type="text" required placeholder="Airplane_id">
+    </td>                                          <!--required는 꼭 입력되어야 하는 값 입니다.-->
+    <td>                                           <!--placeholder는 해당 자리에 어떤 값이 들어가는지 미리보기로 알려주는 것입니다.-->
+        <input id="Total_number_of_seats" name="Total_number_of_seats" type="text"  placeholder="Total_number_of_seats">
+    </td>
+    <td>                                           <!--placeholder는 해당 자리에 어떤 값이 들어가는지 미리보기로 알려주는 것입니다.-->
+        <input id="Airplane_type" name="Airplane_type" type="text"  placeholder="Airplane_type">
+    </td>
+    <td>
+        <input type="submit" value="삽입">      <!--삽입 텍스트를 갖고 있는 submit 버튼을 생성합니다.-->
+    </td>
+</form>

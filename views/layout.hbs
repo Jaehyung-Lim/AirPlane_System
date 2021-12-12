@@ -1,0 +1,15 @@
+<!--모든 hbs 파일에 대한 공통된 layout입니다. -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <link rel='stylesheet' href='/stylesheets/style.css'/>  <!--외부 연결요소, css를 html에 연결시킵니다.-->
+        <style type = "text/css">       
+            table{border-collapse:collapse}
+            th,td{border:1px solid black;width:150px;height:20px}
+        </style>      <!-- 각 페이지에서의 보여지는 것을 설정합니다.-->
+        </head>
+        <body>
+            {{{body}}}
+        </body>
+    </html>

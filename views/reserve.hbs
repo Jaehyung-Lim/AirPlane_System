@@ -1,0 +1,53 @@
+ <form method="post">
+    <button 
+        style="margin-left: 10px;" 
+        name='change_to_user' 
+        type="submit" 
+        value="user page"                              
+        formaction="/reserve"> <!--어느 .js 파일로 보낼 것인지-->
+        user page로 이동
+    </button>
+</form>
+<h1>{{ title1 }}</h1>
+<table> 
+    <tr>
+        <td>항공편 번호</td>
+        <td>구간의 수</td>
+        <td>날짜</td>
+        <td>출발 공항 이름</td>
+        <td>출발 시간</td>
+        <td>도착 공항 이름</td>
+        <td>도착 시간</td>
+        <td>요금</td>
+        <td>좌석 등급</td>
+        <td>허용 수화물 무게</td>
+        <td>남은 좌석 수</td>
+    </tr>
+    {{#each schedule}}    
+    <form method="post" action='/reserve'>
+        <tr>                   
+        <input type= "hidden" name="flight_no" value="{{flight_no}}">
+        <input type= "hidden" name="leg_no" value="{{leg_cnt}}">
+        <input type= "hidden" name="class" value="{{Class}}">
+        <input type= "hidden" name="date" value="{{date}}">
+        <input type= "hidden" name="no_avail_seats" value="{{avail_seats}}">
+        <td>{{flight_no}}</td>  <!--js 파일에서 값을 넘겨 받을 때 반복하는 것입니다.-->
+        <td>{{leg_cnt}}</td>
+        <td>{{date}}</td>
+        <td>{{dep_airport}}</td>
+        <td>{{dep_time}}</td>
+        <td>{{arrival_airport}}</td>
+        <td>{{arrival_time}}</td>
+        <td>{{fare}}</td>
+        <td>{{Class}}</td>
+        <td>{{Max_weight}}</td>
+        <td>{{avail_seats}}</td>
+        <td><input type="text" name="id" placeholder="Customer name"></td> 
+        <td><input type="text" name="cphone" placeholder="폰 번호(01011111111형태)"></td>
+        <td><input type="text" name="seat_no" placeholder="좌석 번호"></td> 
+        <td><input type="submit" value="예약"></td>
+        </tr>
+    </form>
+    {{/each}}
+</table>
+<tr></tr>

@@ -1,0 +1,109 @@
+ <form method="post">
+    <button 
+        style="margin-left: 10px;" 
+        name='change_to_insert' 
+        type="submit" 
+        value="insert page"                              
+        formaction="/delete"> <!--어느 .js 파일로 보낼 것인지-->
+        insert page로 이동
+    </button>
+    <button 
+        style="margin-left: 10px;" 
+        name='change_to_update' 
+        type="submit" 
+        value="update page"                              
+        formaction="/delete"> <!--어느 .js 파일로 보낼 것인지-->
+        update page로 이동
+    </button>
+</form>
+<h1>{{ title1 }}</h1>
+<table> <!--테이블 형식으로 보여줍니다.-->
+    <tr>
+        <td>Airport_code</td>
+        <td>Name</td>
+        <td>City</td>
+        <td>State</td>
+    </tr>
+    {{#each airport }}  <!--데이터가 있을 때 마다 행 단위로 실행되는 것입니다.-->
+        <form method="post"> <!--즉 수정 버튼을 눌렀을 때 값을 넘겨줍니다.-->
+            <tr>
+                <td>{{Airport_code}}</td>
+                <td>{{Name}}</td>
+                <td>{{City}}</td>
+                <td>{{State}}</td>
+                <td style="border: none; margin-left: 10px;">
+                    <button 
+                        style="margin-left: 10px;" 
+                        name='delBtn_airport' 
+                        type="submit" 
+                        value="{{Airport_code}}"                              
+                     formaction="/delete"> <!--어느 .js 파일로 보낼 것인지-->
+                    삭제
+                    </button>
+                </td>   
+            </tr>
+        </form>
+    {{/each}}
+</table>
+<br></br>
+
+<h1>{{ title2 }}</h1>
+
+<table> <!--테이블 형식으로 보여줍니다.-->
+    <tr>
+        <td>Flight_number</td>
+        <td>Airline</td>
+        <td>Weekdays</td>
+    </tr>
+    {{#each flight }}  <!--데이터가 있을 때 마다 행 단위로 실행되는 것입니다.-->
+        <form method="post"> <!--즉 수정 버튼을 눌렀을 때 값을 넘겨줍니다.-->
+            <tr>
+                <td>{{Flight_number}}</td>
+                <td>{{Airline}}</td>
+                <td>{{Weekdays}}</td>
+                <td style="border: none; margin-left: 10px;">
+                    <button 
+                        style="margin-left: 10px;" 
+                        name='delBtn_flight' 
+                        type="submit" 
+                        value="{{Flight_number}}"                              
+                     formaction="/delete"> <!--어느 .js 파일로 보낼 것인지-->
+                    삭제
+                    </button>
+                </td>   
+            </tr>
+        </form>
+    {{/each}}
+</table>
+<br></br>
+
+<h1>{{ title3 }}</h1>
+
+<table> <!--테이블 형식으로 보여줍니다.-->
+    <tr>
+        <td>Airplane_id</td>
+        <td>Total_number_of_seats</td>
+        <td>Airplane_type</td>
+    </tr>
+    {{#each airplane }}  <!--데이터가 있을 때 마다 행 단위로 실행되는 것입니다.-->
+        <form method="post"> <!--즉 수정 버튼을 눌렀을 때 값을 넘겨줍니다.-->
+            <tr>
+                <td>{{Airplane_id}}</td>
+                <td>{{Total_number_of_seats}}</td>
+                <td>{{Airplane_type}}</td>
+                <td style="border: none; margin-left: 10px;">
+                    <button 
+                        style="margin-left: 10px;" 
+                        name='delBtn_airplane' 
+                        type="submit" 
+                        value="{{Airplane_id}}"                              
+                     formaction="/delete"> <!--어느 .js 파일로 보낼 것인지-->
+                    삭제
+                    </button>
+                </td>   
+            </tr>
+        </form>
+    {{/each}}
+</table>
+<br></br>
+

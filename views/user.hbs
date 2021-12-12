@@ -1,0 +1,85 @@
+<h1>{{title1}}</h1>
+<div class="frame">
+    <h1>예약 내역 확인</h1>
+    <form id="deparment" method="post" action='/user'>
+        <div class="id">
+            <input id="id" name="name" type="text" required placeholder="Customer_name">
+        </div>
+        <div class="pwd">
+            <input id="passwd" name='cphone' type="password" required  placeholder="전화번호">
+        </div>
+        <button class='btn' type="submit">로그인</button>
+    </form>
+</div>
+
+ <form method="post">
+     <br></br>
+    <button 
+        style="margin-left: 10px;" 
+        name='change_to_reserve' 
+        type="submit" 
+        value="reserve page"                              
+        formaction="/user"> <!--어느 .js 파일로 보낼 것인지-->
+        예약 페이지로 이동
+    </button>
+</form>
+
+<h1>예약 취소</h1>
+<form id="check" method="post" action='/user'>
+        <tr class="Flight_no">
+            <input id="flight_num" name="F_n" type="text" required placeholder="항공편 번호">
+        </tr>
+        <tr class="Leg_no">
+            <input id="leg_num" name='L_n' type="text" required  placeholder="구간 횟수">
+        </tr>
+
+        <tr class="DATE">
+            <input id="date" name='date_' type="text" required  placeholder="yyyy-mm-dd">
+        </tr>
+        <tr class="SEAT">
+            <input id="SEAT" name='s_n' type="text" required  placeholder="좌석 번호">
+        </tr>
+        <button 
+        style="margin-left: 10px;" 
+        name='delBtn_user' 
+        type="submit" 
+        value="delete user"                              
+        formaction="/user"> <!--어느 .js 파일로 보낼 것인지-->
+        예약 취소
+    </button>
+</form>
+
+
+
+<h1>내 예약 확인하기</h1>
+<table>
+    <tr>
+        <td>항공편 번호</td>
+        <td>구간 횟수</td>
+        <td>날짜</td>
+        <td>출발지</td>
+        <td>도착지</td>
+        <td>출발 시간</td>
+        <td>도착 시간</td>
+        <td>좌석 번호</td>
+        <td>등급</td>
+        <td>예약자 이름</td>
+        <td>예약자 휴대폰 번호</td>
+    </tr>
+    {{#each users}}    <!-- department 데이터를 반복하겠다는 의미입니다.-->
+    <tr>                    <!--department의 데이터가 있을 때 마다 행을 하나씩 추가하도록 합니다.-->
+        <td>{{Flight_number}}</td>  <!--js 파일에서 값을 넘겨 받을 때 반복하는 것입니다.-->
+        <td>{{Leg_number}}</td>
+        <td>{{Date}}</td>
+        <td>{{n1}}</td>
+        <td>{{n2}}</td>
+        <td>{{departure_time}}</td>
+        <td>{{arrival_time}}</td>
+        <td>{{seat_number}}</td>
+        <td>{{Class}}</td>
+        <td>{{Customer_name}}</td>
+        <td>{{Customer_phone}}</td> 
+    </tr>
+    {{/each}}
+</table>
+<tr></tr>

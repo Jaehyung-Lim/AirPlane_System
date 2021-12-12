@@ -1,0 +1,31 @@
+<h1>{{ title1 }}</h1>
+
+<table>
+    <tr>
+        <td>항공편 번호</td>
+        <td>경유 횟수</td>
+        <td>출발 공항 이름</td>
+        <td>출발 시간</td>
+        <td>도착 공항 이름</td>
+        <td>도착 시간</td>
+        <td>요금</td>
+        <td>좌석 등급</td>
+        <td>허용 수화물 최대 무게</td>
+        <td>남은 좌석 수</td>
+    </tr>
+    {{#each schedule}}    <!-- department 데이터를 반복하겠다는 의미입니다.-->
+    <tr>                    <!--department의 데이터가 있을 때 마다 행을 하나씩 추가하도록 합니다.-->
+        <td>{{flight_no}}</td>  <!--js 파일에서 값을 넘겨 받을 때 반복하는 것입니다.-->
+        <td>{{leg_cnt}}</td>
+        <td>{{dep_airport}}</td>
+        <td>{{dep_time}}</td>
+        <td>{{arrival_airport}}</td>
+        <td>{{arrival_time}}</td>
+        <td>{{fare}}</td>
+        <td>{{Class}}</td>
+        <td>{{Max_weight}}</td>
+        <td>{{avail_seats}}</td>
+    </tr>
+    {{/each}}
+</table>
+<tr></tr>

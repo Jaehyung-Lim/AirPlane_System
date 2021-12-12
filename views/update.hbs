@@ -1,0 +1,91 @@
+ <form method="post">
+    <button 
+        style="margin-left: 10px;" 
+        name='change_to_delete' 
+        type="submit" 
+        value="delete page"                              
+        formaction="/update"> <!--어느 .js 파일로 보낼 것인지-->
+        delete page로 이동
+    </button>
+    <button 
+        style="margin-left: 10px;" 
+        name='change_to_insert' 
+        type="submit" 
+        value="insert page"                              
+        formaction="/update"> <!--어느 .js 파일로 보낼 것인지-->
+        insert page로 이동
+    </button>
+</form>
+<h1>{{ title1 }}</h1>
+
+<table> <!--데이터를 테이블 형식으로 보여줍니다.-->
+    <tr> <!--행의 데이터-->
+        <td>Airport_code</td> <!--열의 데이터-->
+        <td>Name</td>
+        <td>City</td>
+        <td>State</td>
+    </tr>
+    {{#each airport_res}}<!--데이터가 있을 때 마다 행 단위로 실행되는 것입니다.-->
+        <form method="post" action='/update'><!--즉 수정 버튼을 눌렀을 때 update.js 의 get '/update' 이쪽'값을 넘겨줍니다.-->           
+            <tr> <!--input tag를 사용하여 입력 가능한 형태로 변경-->
+                <input type= "hidden" name="airport_code" value="{{Airport_code}}">
+                <td>{{Airport_code}}</td> <!--값을 update할 때 Salary field의 값만 바꾸는 것이므로 아래와 같이 합니다.-->
+                <td><input type="text" name="name" placeholder={{Name}}></td> 
+                <td>{{City}}</td>
+                <td>{{State}}</td>
+                <td><input type="submit" value="수정"></td> <!--수정 이름을 갖는 submit 버튼을 생성합니다.-->
+            </tr>
+        </form>
+        {{/each}}   <!--이 곳 까지 반복 실행됩니다.-->
+</table>
+
+<br></br>
+<h1>{{ title2 }}</h1>
+
+<table> <!--테이블 형식으로 보여줍니다.-->
+    <tr>
+        <td>Flight_number</td>
+        <td>Airline</td>
+        <td>Weekdays</td>
+    </tr>
+    {{#each flight_res}}  <!--데이터가 있을 때 마다 행 단위로 실행되는 것입니다.-->
+        <form method="post"> <!--즉 수정 버튼을 눌렀을 때 값을 넘겨줍니다.-->
+            <tr>
+                <input type= "hidden" name="flight_number" value="{{Flight_number}}">
+                <td>{{Flight_number}}</td> <!--괄호 안의 값은 기존의 예시로 안에 보여지는 값입니다.-->
+                <td><input type="text" name="airline" placeholder={{Airline}}></td>
+            <!--나머지 값들은 기존의 값을 유지합니다.-->
+                <td>{{Weekdays}}</td>
+                <!--formaction 속성을 활용하여 입력한 값을 넘겨줍니다.-->
+                <td><input type="submit" value="수정" formaction="/update"></td>
+                <!--formaction: form 내부에서 사용하는 action 입니다.-->
+                <!--method는 post이므로, update.js에서 router.post함수를 사용합니다.-->
+            </tr>
+        </form>
+    {{/each}}
+</table>
+
+<br></br>
+<h1>{{ title3 }}</h1>
+
+<table> <!--테이블 형식으로 보여줍니다.-->
+    <tr>
+        <td>Airplane_id</td>
+        <td>Total_number_of_seats</td>
+        <td>Airplane_type</td>
+    </tr>
+    {{#each airplane_res}}  <!--데이터가 있을 때 마다 행 단위로 실행되는 것입니다.-->
+        <form method="post"> <!--즉 수정 버튼을 눌렀을 때 값을 넘겨줍니다.-->
+            <tr>
+                <input type= "hidden" name="airplane_id" value="{{Airplane_id}}">
+                <td>{{Airplane_id}}</td> <!--괄호 안의 값은 기존의 예시로 안에 보여지는 값입니다.-->
+                <td><input type="text" name="total_number_of_seats" placeholder={{Total_number_of_seats}}></td>
+                <td>{{Airplane_type}}</td> 
+                <td><input type="submit" value="수정" formaction="/update"></td>
+                <!--formaction: form 내부에서 사용하는 action 입니다.-->
+                <!--method는 post이므로, update.js에서 router.post함수를 사용합니다.-->
+                <!--formaction에 의해 update.js에서 /airport의 router.post, router.get으로 변함-->
+            </tr>
+        </form>
+    {{/each}}
+</table>
