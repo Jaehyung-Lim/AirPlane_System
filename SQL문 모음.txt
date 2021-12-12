@@ -1,0 +1,118 @@
+create table User(
+    Id varchar(20) not null,
+    Password varchar(20) not null,
+    Role varchar(20) not null,
+    primary key (Id));
+
+create table Airport(
+    Airport_code int not null,
+    Name varchar(20) not null,
+    City varchar(20) not null,
+    State varchar(20) not null,
+    primary key(Airport_code),
+    unique key(Name));
+
+create table Airplane_Type(
+   Airplane_type_name varchar(20) not null,
+   Max_seats int not null,
+   Company varchar(20),
+   primary key(Airplane_type_name) ); 
+
+create table Can_Land(
+   Airplane_type_name varchar(20) not null,
+   Airport_code int not null,
+   primary key(Airplane_type_name, Airport_code),
+   foreign key(Airplane_type_name) references Airplane_Type(Airplane_type_name),
+   foreign key(Airport_code) references Airport(Airport_code) 
+    on update cascade);
+
+
+create table Airplane(
+    Airplane_id int not null,
+    Total_number_of_seats int not null,
+    Airplane_type varchar(20) not null,
+    primary key(Airplane_id),
+    foreign key(Airplane_type) references Airplane_Type(Airplane_type_name)
+    on update cascade);
+
+ create table Flight(
+    Flight_number int not null,
+    Airline varchar(20) not null,
+    Weekdays varchar(7) not null,
+    primary key(Flight_number));
+
+create table Flight_Leg(
+    Flight_number int not null,
+    Leg_number int not null,
+    Departure_airport_code int not null,
+    Departure_time Time not null,
+    Arrival_airport_code int not null,
+    Arrival_time Time not null,
+    primary key(Flight_number, Leg_number),
+    foreign key (Flight_number) references Flight(Flight_number),
+    foreign key (Departure_airport_code) references Airport(Airport_code),
+    foreign key (Arrival_airport_code) references Airport(Airport_code) 
+          on update cascade);
+
+create table Leg_Instance(
+   Flight_number int not null,
+   Leg_number int not null,
+   Date date not null,
+   Number_of_available_seats int not null,
+   Airplane_id int not null,
+   Departure_airport_code int not null,
+   Departure_time time not null,
+   Arrival_airport_code int not null,
+   Arrival_time time not null,
+   primary key(Flight_number, Leg_number, Date),
+   foreign key(Airplane_id) references Airplane(Airplane_id),
+   foreign key (Flight_number, Leg_number) references Flight_Leg(Flight_number, Leg_number),
+   foreign key (Departure_airport_code) references Airport(Airport_code),
+   foreign key (Arrival_airport_code) references Airport(Airport_code) 
+       on update cascade  );
+
+create table Fare (
+   Flight_number int not null,
+   Fare_code int not null,
+   Amount int not null,
+   Restrictions varchar(20) not null,
+   primary key(Flight_number, Fare_code),
+   foreign key (Flight_number) references Flight(Flight_number) 
+       on update cascade  );
+ 
+create table Seat_Reservation(
+   Flight_number int not null,
+   Leg_number int not null,
+   Date date not null,
+   Seat_number int not null,
+   Class int not null,
+   Customer_name varchar(20) not null,
+   Customer_phone char(11) not null,
+   primary key(Flight_number,Leg_number, Date, Seat_number),
+   foreign key (Flight_number, Leg_number, Date) references Leg_Instance(Flight_number, Leg_number, Date) 
+       on update cascade  );   
+ 	 
+
+
+
+create View Schedule as
+select L.Flight_number as 'flight_no', L.Leg_number as 'leg_cnt', L.date as 'date', A1.Name as 'dep_airport', L.Departure_time as 'dep_time',
+         A2.Name as 'arrival_airport', L.Arrival_time as 'arrival_time', F.Amount as 'fare', F.Fare_code as 'Class', 
+         F.Restrictions as 'Max_weight', L.Number_of_available_seats as 'avail_seats'
+from Leg_instance as L, Fare as F, Airport as A1, Airport as A2
+where L.Flight_number = F.Flight_number and L.Departure_airport_code =A1.Airport_code
+and L.Arrival_airport_code=A2.Airport_code;
+
+
+create index Airport_index ON Airport (Airport_code) USING BTREE;   
+
+create index Airplane_index ON Airplane (Airplane_id) USING BTREE;
+
+create index Flight_index ON Flight (Flight_number) USING BTREE;
+
+create index Flight_Leg_index ON Flight_Leg(Leg_number) USING BTREE;
+
+
+
+
+
